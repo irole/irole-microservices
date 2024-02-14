@@ -1,0 +1,25 @@
+{
+  "name": "@irole/microservices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "irolegroup",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.3.3",
+    "@nestjs/config": "^3.2.0",
+    "@nestjs/microservices": "^10.3.3",
+    "mongoose": "^8.1.2"
+  }
+}
