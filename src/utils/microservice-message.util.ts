@@ -3,20 +3,25 @@ import {
     MicroSendInterface,
     Reason,
 } from '../interfaces/micro-res.interface';
-import {firstValueFrom} from 'rxjs';
+import {firstValueFrom, timeout} from 'rxjs';
 import {ClientProxy} from '@nestjs/microservices';
 import {PatternEnum} from "../enums/pattern.enum";
 import {ServiceNameEnum} from "../enums/service-name.enum";
+import {fromMs} from "ms-typescript";
 
 export function generateMessage(
     from: ServiceNameEnum,
     to: ServiceNameEnum,
     data: any,
+    ttl: number | string = 0
 ): MicroSendInterface {
+    ttl = typeof ttl === 'string' ? fromMs(ttl) : ttl;
+    ttl = new Date().getTime() + (ttl as number);
     return {
         from,
         to,
         data,
+        ttl,
     };
 }
 
@@ -48,4 +53,14 @@ export async function sendMicroMessage(
     message: MicroSendInterface,
 ): Promise<MicroResInterface> {
     return firstValueFrom(client.send(pattern, message));
+}
+
+export async function sendMicroMessageWithTimeOut(
+    client: ClientProxy,
+    pattern: PatternEnum,
+    message: MicroSendInterface,
+    timeOut: number | string = 10000
+): Promise<MicroResInterface> {
+    timeOut = typeof timeOut === 'string' ? fromMs(timeOut) : timeOut;
+    return firstValueFrom(client.send(pattern, message).pipe(timeout(timeOut as number)));
 }
