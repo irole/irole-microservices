@@ -15,8 +15,10 @@ export function generateMessage(
     data: any,
     ttl: number | string = 0
 ): MicroSendInterface {
-    ttl = typeof ttl === 'string' ? toMs(ttl) : ttl;
-    ttl = new Date().getTime() + (ttl as number);
+    if ((typeof ttl === 'number' && ttl > 0) || typeof ttl === 'string') {
+        ttl = typeof ttl === 'string' ? toMs(ttl) : ttl;
+        ttl = new Date().getTime() + (ttl as number);
+    }
     return {
         from,
         to,
