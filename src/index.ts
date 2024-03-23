@@ -1,5 +1,6 @@
 export * from './enums/service-name.enum'
 export * from './enums/pattern.enum'
+export * from './enums/permission.enum'
 export * from './interfaces/jwt-access-payload.interface'
 export * from './interfaces/jwt-refresh-payload.interface'
 export * from './interfaces/micro-res.interface'
