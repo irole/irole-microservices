@@ -33,6 +33,7 @@ export class ResponseInterceptor implements NestInterceptor {
         next: CallHandler,
     ): Promise<Observable<any>> {
         const now = Date.now();
+        const request = context.switchToHttp().getRequest();
         const env: string | undefined = process.env.NODE_ENV;
         const body = await firstValueFrom(next.handle());
         const status: number =
@@ -44,6 +45,8 @@ export class ResponseInterceptor implements NestInterceptor {
             statusCode: status,
             message: this.statusMessages[status],
             data: body,
+            path: request.url,
+            method: request.method,
         };
         // Conditionally add time for development environment
         if (env === 'development') {
