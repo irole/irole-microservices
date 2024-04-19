@@ -4,5 +4,6 @@ export enum PatternEnum {
   AUTH_UPDATE_USER = 'auth_update_user',
   AUTH_UPDATE_PASSWORD = 'auth_update_password',
   USER_AVATAR_UPLOADED = 'user_avatar_uploaded',
+  USER_AVATAR_DELETED = 'user_avatar_deleted',
   FILE_AVATAR_DELETED = 'file_avatar_deleted',
 }
