@@ -6,4 +6,5 @@ export enum PatternEnum {
   USER_AVATAR_UPLOADED = 'user_avatar_uploaded',
   USER_AVATAR_DELETED = 'user_avatar_deleted',
   FILE_AVATAR_DELETED = 'file_avatar_deleted',
+  EMAIL_FORGOT_PASSWORD = 'email_forgot_password',
 }
